@@ -1,10 +1,14 @@
 # 🏡 HomeMatch-AI
 
+<img width="1503" alt="image" src="https://github.com/user-attachments/assets/ae74ce97-2c0b-4484-90b1-445d1007492e" />
+
 **AI-powered personalized real estate search engine** using LLMs and vector embeddings.
 
 
 ## 🚀 About the Project
 HomeMatch is an AI-powered real estate search tool that personalizes property listings based on buyer preferences. By leveraging Large Language Models (LLMs) and vector databases, the application enhances standard real estate listings by tailoring descriptions to match users' unique needs.
+
+![Alt Text](images/my-image.png)
 
 ### 🔹 **Core Features**
 - 🔍 **Smart Search**: Uses **semantic search** to understand natural language queries for property hunting.
