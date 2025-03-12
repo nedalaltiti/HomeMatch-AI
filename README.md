@@ -40,9 +40,31 @@ Option 1: Run in Jupyter Notebook
 
 Open HomeMatch.ipynb and run the cells.
 
-Option 3: Run Gradio UI
+Option 2: Run Gradio UI
 python app.py
 ```
+Then, open the link shown in the terminal to interact with the UI.
 
+## 📊 How It Works
+
+### 🏡 1. Collect Buyer Preferences  
+Users enter their desired budget, number of bedrooms, preferred location, must-have features, and property type.
+
+### 🔎 2. Vector Search in Database  
+- The entered preferences are converted into vector embeddings.  
+- A vector search is performed on the database to find the closest matching properties.  
+
+### 🎯 3. AI-Generated Personalized Listings  
+- LLMs rewrite the property descriptions to highlight features the buyer cares about.  
+- Images of the listings are retrieved and displayed along with personalized text.  
+
+## 🎨 Demo UI (Gradio)
+
+The project includes a **Gradio-powered UI** for an interactive real estate search experience.
+
+### 🚀 Run the UI  
+```bash
+python app.py
+```
 
 
