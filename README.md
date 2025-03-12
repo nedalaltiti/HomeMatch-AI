@@ -4,7 +4,7 @@
 
 
 ## 🚀 About the Project
-HomeMatch-AI transforms traditional real estate listings into **personalized** narratives tailored to each buyer’s preferences. Leveraging **LLMs, vector databases, and multimodal embeddings**, it helps buyers find the perfect home by **matching their input preferences with real estate listings.**
+HomeMatch is an AI-powered real estate search tool that personalizes property listings based on buyer preferences. By leveraging Large Language Models (LLMs) and vector databases, the application enhances standard real estate listings by tailoring descriptions to match users' unique needs.
 
 ### 🔹 **Core Features**
 - 🔍 **Smart Search**: Uses **semantic search** to understand natural language queries for property hunting.
@@ -24,7 +24,7 @@ HomeMatch-AI/
 │── requirements.txt 
 ```
 
-## 📦 **Installation & Setup**
+## 🛠️ **Installation & Setup**
 ### 1️⃣ **Clone the Repository**
 ```bash
 git clone https://github.com/nedalaltiti/HomeMatch-AI.git
@@ -34,16 +34,16 @@ python3 -m venv env
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 
 pip install -r requirements.txt
-
-🛠️ How to Run
+```
 Option 1: Run in Jupyter Notebook
-
+```bash
 Open HomeMatch.ipynb and run the cells.
-
+```
 Option 2: Run Gradio UI
+```bash
 python app.py
 ```
-Then, open the link shown in the terminal to interact with the UI.
+This will generate a local URL to access the app.
 
 ## 📊 How It Works
 
