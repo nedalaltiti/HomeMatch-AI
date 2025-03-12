@@ -1,2 +1,49 @@
-# HomeMatch-AI
-A personalized real estate search app leveraging LLMs and vector embeddings to match homebuyers with properties tailored uniquely to their preferences. Say goodbye to generic listings. experience real estate that's truly yours.
+# 🏡 HomeMatch-AI
+
+**AI-powered personalized real estate search engine** using LLMs and vector embeddings.
+
+![HomeMatch Banner](https://your-image-url.com/banner.png) <!-- Replace with actual banner URL if needed -->
+
+## 🚀 About the Project
+HomeMatch-AI transforms traditional real estate listings into **personalized** narratives tailored to each buyer’s preferences. Leveraging **LLMs, vector databases, and multimodal embeddings**, it helps buyers find the perfect home by **matching their input preferences with real estate listings.**
+
+### 🔹 **Core Features**
+- 🔍 **Smart Search**: Uses **semantic search** to understand natural language queries for property hunting.
+- 📝 **Personalized Listing Descriptions**: AI-generated descriptions that highlight features important to the buyer.
+- 🖼️ **Multimodal Search**: Searches **both text and images** to enhance property discovery.
+- ⚡ **Real-time Recommendations**: Generates property listings dynamically based on user inputs.
+- 🎨 **User-Friendly UI**: Interactive web application built with **Gradio**.
+
+---
+
+## 🏗️ **Project Structure**
+HomeMatch-AI/ │── images/ # Generated images for listings │── .gitignore # Files to be ignored by Git │── HomeMatch.ipynb # Jupyter Notebook for running the project │── LICENSE # Project license │── README.md # This README file │── listings.csv # Dataset with real estate listings │── requirements.txt # Dependencies and required libraries └── search_listings.py # Main script for searching listings
+
+
+---
+
+## 📦 **Installation & Setup**
+### 1️⃣ **Clone the Repository**
+```bash
+git clone https://github.com/nedalaltiti/HomeMatch-AI.git
+cd HomeMatch-AI
+
+python3 -m venv env
+source env/bin/activate  # On Windows use `env\Scripts\activate`
+
+pip install -r requirements.txt
+
+🛠️ How to Run
+Option 1: Run in Jupyter Notebook
+
+Open HomeMatch.ipynb and run the cells.
+
+Option 2: Run in Python
+Run the HomeMatch script to start the application
+
+python search_listings.py
+
+Option 3: Run Gradio UI
+python app.py
+
+
