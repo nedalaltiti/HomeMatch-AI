@@ -18,11 +18,16 @@ HomeMatch is an AI-powered real estate search tool that personalizes property li
 ## 🏗️ **Project Structure**
 ```
 HomeMatch-AI/
+│── chroma_db
 │── images/ 
 │── .gitignore 
-│── HomeMatch.ipynb 
+│── HomeMatch.ipynb
+│── data_loader.py
+│── search.py
+│── ui.py
 │── README.md 
-│── listings.csv 
+│── listings.csv
+│── listings_cache.pkl
 │── requirements.txt 
 ```
 
