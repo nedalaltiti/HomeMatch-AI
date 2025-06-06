@@ -1,10 +1,11 @@
 import os
 import logging
-from typing import Any, List, Tuple
+from typing import Any
 
 import gradio as gr
 
-from config import IMAGES_DIR, DEFAULT_IMAGE, TOP_K
+from config import settings
+
 
 # We'll assume data_loader has provided us df, df_dict, db
 df = None
@@ -50,16 +51,18 @@ def search_listings(
     if db is None:
         return [("⚠️ No DB Found", "Please check vector DB initialization")]
 
-    search_results = db.similarity_search(query, k=TOP_K)
+    search_results = db.similarity_search(query, k=settings.top_k)
+
     results = []
 
     for res in search_results:
         prop_id = res.metadata["id"]
         last_search_ids.append(prop_id)
 
-        img_path = os.path.join(IMAGES_DIR, f"{prop_id}.png")
+        img_path = os.path.join(settings.images_dir, f"{prop_id}.png")
         if not os.path.exists(img_path):
-            img_path = DEFAULT_IMAGE
+            img_path = settings.default_image
+
 
         results.append((img_path, f"Listing ID: {prop_id}"))
 

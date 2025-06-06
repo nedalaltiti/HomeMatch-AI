@@ -5,7 +5,8 @@ import pandas as pd
 from langchain_community.vectorstores import Chroma
 from langchain_experimental.open_clip import OpenCLIPEmbeddings
 
-from config import LISTINGS_CSV, VECTOR_DB_DIR, CACHE_FILE
+from config import settings
+
 
 def load_dataframe():
     """Load the property listings DataFrame from CSV or cache.
@@ -13,17 +14,17 @@ def load_dataframe():
     Returns a tuple ``(df, df_dict)`` where ``df_dict`` maps IDs to row data.
     """
     try:
-        if os.path.exists(CACHE_FILE):
-            df = joblib.load(CACHE_FILE)
+        if os.path.exists(settings.cache_file):
+            df = joblib.load(settings.cache_file)
             logging.info("✅ Loaded property listings from cache.")
         else:
-            df = pd.read_csv(LISTINGS_CSV, dtype={
+            df = pd.read_csv(settings.listings_csv, dtype={
                 "price": str, 
                 "bedrooms": str, 
                 "bathrooms": str, 
                 "house_size": str
             })
-            joblib.dump(df, CACHE_FILE)
+            joblib.dump(df, settings.cache_file)
             logging.info("✅ Successfully loaded and cached property listings.")
         # Also build a dictionary version
         df_dict = df.set_index("id").to_dict(orient="index")
@@ -34,7 +35,7 @@ def load_dataframe():
 
 def load_vector_db():
     """Initializes and returns the Chroma vector store."""
-    if not os.path.exists(VECTOR_DB_DIR):
+    if not os.path.exists(settings.vector_db_dir):
         msg = "⚠️ Vector database missing! Ensure data is preprocessed."
         logging.warning(msg)
         # Optionally raise an exception or just continue with empty store
@@ -42,7 +43,7 @@ def load_vector_db():
 
     try:
         db = Chroma(
-            persist_directory=VECTOR_DB_DIR, 
+            persist_directory=settings.vector_db_dir,
             collection_name="listings",
             embedding_function=OpenCLIPEmbeddings()
         )

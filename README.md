@@ -57,7 +57,9 @@ This will generate a local URL to access the app.
  set the `DEFAULT_IMAGE` environment variable to point to a custom file.
 
 ## ⚙️ Configuration
-Create a `.env` file to override any of the following settings:
+HomeMatch-AI uses a small [Pydantic](https://docs.pydantic.dev/) settings class for configuration.
+Copy the provided `.env.example` to `.env` and adjust any values as needed. These environment variables control paths and search behavior:
+
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
