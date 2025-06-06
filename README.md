@@ -52,6 +52,10 @@ python app.py
 ```
 This will generate a local URL to access the app.
 
+**Note:** The application falls back to an image named `default_image.png` when
+ a listing has no associated photo. Ensure `images/default_image.png` exists or
+ set the `DEFAULT_IMAGE` environment variable to point to a custom file.
+ 
 ## 📊 How It Works
 
 ### 🏡 1. Collect Buyer Preferences  
