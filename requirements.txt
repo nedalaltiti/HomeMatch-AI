@@ -16,7 +16,7 @@ gradio==4.44.1
 diffusers==0.26.3
 langchain_experimental==0.0.52 
 open_clip_torch==2.24.0
-langchain-community
+langchain-community==0.0.38
 
 # Hugging Face and Model Hosting
 huggingface_hub==0.25.2
