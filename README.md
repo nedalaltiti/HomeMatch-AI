@@ -55,6 +55,18 @@ This will generate a local URL to access the app.
 **Note:** The application falls back to an image named `default_image.png` when
  a listing has no associated photo. Ensure `images/default_image.png` exists or
  set the `DEFAULT_IMAGE` environment variable to point to a custom file.
+
+## ⚙️ Configuration
+Create a `.env` file to override any of the following settings:
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `LISTINGS_CSV` | `listings.csv` | Path to the property CSV file |
+| `VECTOR_DB_DIR` | `chroma_db` | Directory holding the vector database |
+| `CACHE_FILE` | `listings_cache.pkl` | Pickle file used for caching the dataframe |
+| `IMAGES_DIR` | `images` | Directory containing listing images |
+| `DEFAULT_IMAGE` | `default_image.png` | Fallback image when a listing photo is missing |
+| `TOP_K` | `5` | Number of search results returned from the vector DB |
  
 ## 📊 How It Works
 
