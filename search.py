@@ -2,6 +2,11 @@ import os
 import logging
 import gradio as gr
 
+# Cache environment variables so they aren't looked up on every search
+IMAGES_DIR = os.getenv("IMAGES_DIR", "images")
+DEFAULT_IMAGE = os.getenv("DEFAULT_IMAGE", "default_image.png")
+TOP_K = int(os.getenv("TOP_K", "5"))
+
 # We'll assume data_loader has provided us df, df_dict, db
 df = None
 df_dict = None
@@ -40,23 +45,16 @@ def search_listings(budget, bedrooms, neighborhood, features, property_type):
     if db is None:
         return [("⚠️ No DB Found", "Please check vector DB initialization")]
 
-    search_results = db.similarity_search(query, k=5)
+    search_results = db.similarity_search(query, k=TOP_K)
     results = []
 
     for res in search_results:
         prop_id = res.metadata["id"]
         last_search_ids.append(prop_id)
 
-        # Check if there's an image
-        images_dir = os.getenv("IMAGES_DIR", "images")
-        default_image = os.getenv("DEFAULT_IMAGE", "default_image.png")
-        img_path = os.path.join(images_dir, f"{prop_id}.png")
+        img_path = os.path.join(IMAGES_DIR, f"{prop_id}.png")
         if not os.path.exists(img_path):
-            img_path = default_image
-
-        # Retrieve the row from df_dict (avoid slow df lookups)
-        row_data = df_dict.get(prop_id, {})
-        description = row_data.get("description", "No description available.")
+            img_path = DEFAULT_IMAGE
 
         results.append((img_path, f"Listing ID: {prop_id}"))
 
