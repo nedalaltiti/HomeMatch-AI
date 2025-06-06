@@ -1,3 +1,10 @@
+"""Configuration module for HomeMatch-AI.
+
+This module loads environment variables from a `.env` file if present and
+provides simple constants for other modules to import. Defaults are supplied
+for all values so the application works out of the box.
+"""
+
 import os
 from dotenv import load_dotenv
 

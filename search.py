@@ -1,6 +1,6 @@
 import os
 import logging
-from typing import Any, List, Tuple
+from typing import Any
 
 import gradio as gr
 
