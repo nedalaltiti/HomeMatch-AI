@@ -2,7 +2,6 @@ import os
 import logging
 import joblib
 import pandas as pd
-from dotenv import load_dotenv
 from langchain_community.vectorstores import Chroma
 from langchain_experimental.open_clip import OpenCLIPEmbeddings
 
