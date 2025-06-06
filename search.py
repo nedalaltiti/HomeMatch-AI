@@ -6,6 +6,7 @@ import gradio as gr
 
 from config import settings
 
+
 # We'll assume data_loader has provided us df, df_dict, db
 df = None
 df_dict = None
@@ -51,6 +52,7 @@ def search_listings(
         return [("⚠️ No DB Found", "Please check vector DB initialization")]
 
     search_results = db.similarity_search(query, k=settings.top_k)
+
     results = []
 
     for res in search_results:
@@ -60,6 +62,7 @@ def search_listings(
         img_path = os.path.join(settings.images_dir, f"{prop_id}.png")
         if not os.path.exists(img_path):
             img_path = settings.default_image
+
 
         results.append((img_path, f"Listing ID: {prop_id}"))
 

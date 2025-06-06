@@ -7,6 +7,7 @@ from langchain_experimental.open_clip import OpenCLIPEmbeddings
 
 from config import settings
 
+
 def load_dataframe():
     """Load the property listings DataFrame from CSV or cache.
 

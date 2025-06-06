@@ -60,6 +60,7 @@ This will generate a local URL to access the app.
 HomeMatch-AI uses a small [Pydantic](https://docs.pydantic.dev/) settings class for configuration.
 Copy the provided `.env.example` to `.env` and adjust any values as needed. These environment variables control paths and search behavior:
 
+
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `LISTINGS_CSV` | `listings.csv` | Path to the property CSV file |
