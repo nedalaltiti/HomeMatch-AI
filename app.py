@@ -1,5 +1,4 @@
 import logging
-from dotenv import load_dotenv
 from data_loader import load_dataframe, load_vector_db
 from search import init_globals
 from ui import create_ui
@@ -12,8 +11,6 @@ def main():
         handlers=[logging.StreamHandler(), logging.FileHandler("app.log")]
     )
 
-    # Load environment
-    load_dotenv()
 
     # Load data
     df, df_dict = load_dataframe()

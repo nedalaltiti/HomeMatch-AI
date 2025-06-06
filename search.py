@@ -1,6 +1,10 @@
 import os
 import logging
+from typing import Any, List, Tuple
+
 import gradio as gr
+
+from config import IMAGES_DIR, DEFAULT_IMAGE, TOP_K
 
 # We'll assume data_loader has provided us df, df_dict, db
 df = None
@@ -10,7 +14,7 @@ db = None
 # We'll keep a global for last_search_ids
 last_search_ids = []
 
-def init_globals(the_df, the_df_dict, the_db):
+def init_globals(the_df: Any, the_df_dict: dict[str, Any], the_db: Any) -> None:
     """
     Call this once in app.py after you load the data and DB 
     so we can store them in our module-level variables.
@@ -20,7 +24,13 @@ def init_globals(the_df, the_df_dict, the_db):
     df_dict = the_df_dict
     db = the_db
 
-def search_listings(budget, bedrooms, neighborhood, features, property_type):
+def search_listings(
+    budget: str,
+    bedrooms: str,
+    neighborhood: str,
+    features: str,
+    property_type: str,
+) -> list[tuple[str, str]]:
     """
     Searches vector database based on user input preferences and returns matched listings 
     in the form of a list of (image_path, label) tuples for Gradio's Gallery.
@@ -40,23 +50,16 @@ def search_listings(budget, bedrooms, neighborhood, features, property_type):
     if db is None:
         return [("⚠️ No DB Found", "Please check vector DB initialization")]
 
-    search_results = db.similarity_search(query, k=5)
+    search_results = db.similarity_search(query, k=TOP_K)
     results = []
 
     for res in search_results:
         prop_id = res.metadata["id"]
         last_search_ids.append(prop_id)
 
-        # Check if there's an image
-        images_dir = os.getenv("IMAGES_DIR", "images")
-        default_image = os.getenv("DEFAULT_IMAGE", "default_image.png")
-        img_path = os.path.join(images_dir, f"{prop_id}.png")
+        img_path = os.path.join(IMAGES_DIR, f"{prop_id}.png")
         if not os.path.exists(img_path):
-            img_path = default_image
-
-        # Retrieve the row from df_dict (avoid slow df lookups)
-        row_data = df_dict.get(prop_id, {})
-        description = row_data.get("description", "No description available.")
+            img_path = DEFAULT_IMAGE
 
         results.append((img_path, f"Listing ID: {prop_id}"))
 
@@ -66,7 +69,7 @@ def search_listings(budget, bedrooms, neighborhood, features, property_type):
     return results
 
 def personalize_description(evt: gr.SelectData) -> str:
-    """Return a description for the selected gallery item."""
+    """Return the description for the item selected in the gallery."""
     global last_search_ids, df_dict
 
     try:

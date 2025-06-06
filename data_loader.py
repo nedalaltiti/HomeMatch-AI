@@ -5,15 +5,13 @@ import pandas as pd
 from langchain_community.vectorstores import Chroma
 from langchain_experimental.open_clip import OpenCLIPEmbeddings
 
-# Load environment variables from .env
-LISTINGS_CSV = os.getenv("LISTINGS_CSV", "listings.csv")  
-VECTOR_DB_DIR = os.getenv("VECTOR_DB_DIR", "chroma_db")
-IMAGES_DIR = os.getenv("IMAGES_DIR", "images")
-CACHE_FILE = os.getenv("CACHE_FILE", "listings_cache.pkl")
-DEFAULT_IMAGE = os.getenv("DEFAULT_IMAGE", "default_image.png")
+from config import LISTINGS_CSV, VECTOR_DB_DIR, CACHE_FILE
 
 def load_dataframe():
-    """Loads the listings DataFrame from CSV or cache, returns df and df_dict."""
+    """Load the property listings DataFrame from CSV or cache.
+
+    Returns a tuple ``(df, df_dict)`` where ``df_dict`` maps IDs to row data.
+    """
     try:
         if os.path.exists(CACHE_FILE):
             df = joblib.load(CACHE_FILE)
