@@ -65,40 +65,16 @@ def search_listings(budget, bedrooms, neighborhood, features, property_type):
         return [("⚠️ No Listings Found", "No properties match your criteria.")]
     return results
 
-def personalize_description(evt):
-    """
-    Retrieves the personalized listing description when a user selects a gallery item.
-    Expects evt to be a dict with an "index" key.
-    """
-    try:
-        # Check that the event data contains an "index"
-        if evt is None or "index" not in evt:
-            raise ValueError("Invalid event data received.")
-        
-        selected_index = evt["index"]
-        if selected_index < 0 or selected_index >= len(last_search_ids):
-            raise ValueError("Index out of range for last_search_ids.")
-        
-        listing_id = last_search_ids[selected_index]
-        listing_info = df_dict.get(listing_id, {})
-        return listing_info.get("description", "No description available.")
-    except Exception as e:
-        logging.error(f"🚨 Error fetching personalized description: {e}")
-        return "Error retrieving description."
-    
-def personalize_description(evt: gr.SelectData):
-    """
-    evt.value: content of the selected gallery item
-    evt.index: the 0-based index of the selection
-    """
-    import logging
+def personalize_description(evt: gr.SelectData) -> str:
+    """Return a description for the selected gallery item."""
     global last_search_ids, df_dict
 
     try:
-        if evt.index < 0 or evt.index >= len(last_search_ids):
+        idx = getattr(evt, "index", None)
+        if idx is None or idx < 0 or idx >= len(last_search_ids):
             raise ValueError("Index out of range for last_search_ids.")
 
-        listing_id = last_search_ids[evt.index]
+        listing_id = last_search_ids[idx]
         listing_info = df_dict.get(listing_id, {})
         return listing_info.get("description", "No description available.")
     except Exception as e:
